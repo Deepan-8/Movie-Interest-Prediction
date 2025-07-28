@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Interest Predictor</title>
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --card-bg: #F07470;
+      --text: #111827;
+      --primary: #4CAF50;
+      --primary-hover: #45a049;
+      --focus-ring: rgba(79, 70, 229, 0.5);
+      --radius: 10px;
+      --transition: 0.2s ease;
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115;
+        --card-bg: #1f2937;
+        --text: #e5e7eb;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu,
+        "Helvetica Neue", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 20px 30px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 420px;
+      max-width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 0 0 20px;
+      line-height: 1.2;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 14px;
+      background: #fff;
+      color: #111;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      input[type="text"] {
+        background: #111827;
+        color: #e5e7eb;
+        border-color: #374151;
+      }
+    }
+
+    input[type="text"]:focus-visible {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow:
+        0 0 0 3px #fff,
+        0 0 0 6px var(--focus-ring);
+    }
+
+    .btn {
+      grid-column: 1 / -1;
+      background-color: var(--primary);
+      color: #fff;
+      padding: 12px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform var(--transition), box-shadow 0.3s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Stack fields on small screens */
+    @media (max-width: 480px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Features</h2>
+    <form action="/predict" method="post" class="form-grid">
+      <div class="field">
+        <label for="age1">Age</label>
+        <input type="text" id="age1" name="feature1">
+      </div>
+
+      <div class="field">
+        <label for="gender1">Gender (1 = Male, 0 = Female)</label>
+        <input type="text" id="gender1" name="feature2">
+      </div>
+
+      <div class="field">
+        <label for="age2">Age</label>
+        <input type="text" id="age2" name="feature3">
+      </div>
+
+      <div class="field">
+        <label for="gender2">Gender (1 = Male, 0 = Female)</label>
+        <input type="text" id="gender2" name="feature4">
+      </div>
+
+      <button type="submit" class="btn">Predict</button>
+    </form>
+  </div>
+</body>
+</html>
